@@ -1,7 +1,9 @@
+import { Outlet } from "react-router-dom";
+
 const Root = () => {
   return (
-    <div>
-      <h1>This is Root Components</h1>
+    <div className="font-poppins max-w-6xl mx-auto">
+      <Outlet></Outlet>
     </div>
   );
 };
