@@ -1,7 +1,10 @@
+import moment from "moment/moment";
+
 const Header = () => {
   return (
     <div>
-      <h2 className="text-2xl">Header Component</h2>
+      <img src="/public/assets/logo.png" alt="" />
+  {moment().format("dddd, MMMM D, YYYY")}
     </div>
   );
 };
