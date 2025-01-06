@@ -1,7 +1,7 @@
-import Header from "./shared/header/Header";
-import LeftSideNav from "./shared/leftSideNav/LeftSideNav";
-import Navbar from "./shared/navbar/Navbar";
-import RightSideNav from "./shared/rightSideNav/RightSideNav";
+import RightSideNav from '../shared//rightSideNav/RightSideNav';
+import Header from '../shared/header/Header';
+import LeftSideNav from '../shared/leftSideNav/LeftSideNav';
+import Navbar from '../shared/navbar/Navbar';
 
 const Home = () => {
   return (
