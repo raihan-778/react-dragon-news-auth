@@ -3,6 +3,8 @@ import Root from "../layouts/Root";
 import AboutUs from "../pages/aboutUs/AboutUs";
 import Career from "../pages/career/Career";
 import Home from "../pages/home/Home";
+import Login from "../pages/shared/login/Login";
+import Register from "../pages/shared/register/Register";
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const routes = createBrowserRouter([
       {
         path: "/career",
         element: <Career></Career>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },
