@@ -3,7 +3,7 @@ import defaultUserPicture from "/assets/user.png";
 
 const Navbar = () => {
 const navLinks=<>
-<li><Link to="home">Home</Link></li>
+<li><Link to="/">Home</Link></li>
 <li><Link to="about">About</Link></li>
 <li><Link to="career">Career</Link></li>
 </>

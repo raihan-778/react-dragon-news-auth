@@ -7,6 +7,8 @@ const Login = () => {
     e.preventDefault();
     console.log(e.currentTarget);
     const formData = new FormData(e.currentTarget);
+    const email=formData.get('email')
+    const password=formData.get('password')
     console.log(formData.get("password"));
   };
 

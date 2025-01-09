@@ -14,6 +14,16 @@ const Register = () => {
               required
             />
             <label className="label">
+              <span className="label-text">Photo Url</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Phoro Url"
+              className="input input-bordered"
+              name="photo"
+              required
+            />
+            <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
