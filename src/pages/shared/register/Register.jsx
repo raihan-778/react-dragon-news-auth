@@ -1,14 +1,31 @@
 const Register = () => {
+
+const handleRegister=(e)=>{
+
+  e.preventDefault()
+
+
+  const form= new FormData(e.currentTarget);
+  const name=form.get("name")
+  const photo=form.get("photo")
+  const email=form.get("email")
+  const password=form.get("password")
+  console.log(name,photo,email,password)
+  
+
+}
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <form className="card-body">
+        <form onSubmit={handleRegister} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
             <input
               type="text"
+              name="name"
               placeholder="Enter your name"
               className="input input-bordered"
               required
@@ -29,6 +46,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="email"
+              name="email"
               className="input input-bordered"
               required
             />
@@ -39,6 +57,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="password"
               className="input input-bordered"
               required
