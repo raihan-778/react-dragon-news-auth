@@ -1,15 +1,24 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import Loader from "../loader/Loader";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   //   const [user, setUser] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
     console.log(e.currentTarget);
     const formData = new FormData(e.currentTarget);
-    const email=formData.get('email')
-    const password=formData.get('password')
-    console.log(formData.get("password"));
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    signInUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => console.error(err.message));
   };
 
   return (
@@ -46,10 +55,12 @@ const Login = () => {
                 </a>
               </label>
             </div>
+            {}
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+          <Loader></Loader>
           <p>
             New here!!Please{" "}
             <span>

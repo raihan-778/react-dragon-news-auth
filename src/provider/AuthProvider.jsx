@@ -1,57 +1,92 @@
-import React, { useState } from 'react';
-import app from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from "react";
 
-const AuthProvider = () => {
-    const [user,setUser]=useState(null)
-    
+import app from "../firebase/firebase.config";
 
-    const auth=getAuth(app)
+export const AuthContext = createContext(null);
 
-   const registerWithEmail=(email,password)=>{
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const googleProvider = new GoogleAuthProvider();
 
-createUserWithEmailAndPassword(auth,email,password).
-    then(res=>{
-        console.log(res.user)
-        setUser(res.user)
-    }).
-    catch(err=>console.log(err))
+  const auth = getAuth(app);
 
-   }
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+    // .then((res) => {
+    //   setLoading(true);
+    //   console.log(res.user);
+    //   setUser(res.user);
+    // })
+    // .catch((err) => console.log(err));
+  };
+  const signInUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+    // .then((res) => {
+    //   setLoading(true);
+    //   console.log(res.user);
+    //   setUser(res.user);
+    // })
+    // .catch((err) => console.log(err));
+  };
+  const registerWithGoogle = () => {
+    return signInWithPopup(auth, googleProvider);
+    // .then((res) => {
+    //   setLoading(true);
+    //   console.log(res.user);
+    //   setUser(res.user);
+    // })
+    // .catch((err) => console.log(err));
+  };
+  const logOut = () => {
+    return signOut(auth);
+    // .then(() => {
+    //   setLogOutInfo("User logged out Successfully");
+    // })
+    // .catch((err) => console.log(err.message));
+  };
 
+  useEffect(() => {
+    const unsubscribe = () => {
+      onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        setLoading(false);
+        // ...
 
+        console.log("current user", currentUser.email);
+      });
+    };
+    return unsubscribe();
+  }, []);
 
+  const authInfo = {
+    createUser,
+    signInUser,
+    registerWithGoogle,
+    logOut,
+    loading,
+    setLoading,
+    // logOutInfo,
+    user,
+  };
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
+};
 
-
-   const unsubscribe=()=>{
-    onAuthStateChanged(auth, (user) => {
-        if (user.uid) {
-        
-          setUser(user)
-          // ...
-        } else {
-         console.error("User Not Found")
-        }
-      }
-      
-    )
-    return unsubscribe()
-     
-        
-
-   }
-   
-
-
-
-        
-
-
-    return (
-        <div>
-           <h2> This is auth provider</h2>
-        </div>
-    );
+AuthProvider.propTypes = {
+  user: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
 };
 
 export default AuthProvider;

@@ -5,9 +5,9 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa6";
-import myClass from "/assets/class.png";
-import playGround from "/assets/playground.png";
-import swimming from "/assets/swimming.png";
+import myClass from "../../../assets/class.png";
+import playGround from "../../../assets/playground.png";
+import swimming from "../../../assets/swimming.png";
 
 const RightSideNav = () => {
   return (

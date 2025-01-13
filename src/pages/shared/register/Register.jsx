@@ -1,19 +1,25 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
 
-const handleRegister=(e)=>{
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-  e.preventDefault()
+    const form = new FormData(e.currentTarget);
+    const name = form.get("name");
+    const photo = form.get("photo");
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(name, photo, email, password);
 
-
-  const form= new FormData(e.currentTarget);
-  const name=form.get("name")
-  const photo=form.get("photo")
-  const email=form.get("email")
-  const password=form.get("password")
-  console.log(name,photo,email,password)
-  
-
-}
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -64,7 +70,7 @@ const handleRegister=(e)=>{
             />
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary">Register</button>
           </div>
         </form>
       </div>
