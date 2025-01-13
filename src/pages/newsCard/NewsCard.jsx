@@ -15,7 +15,7 @@ const NewsCard = ({ aNews }) => {
     _id,
   } = aNews;
   return (
-    <div className="card bg-base-100 mb-2 border-2 rounded-2xl shadow-xl">
+    <div className="card bg-base-100 p-3 my-2 border-2 rounded-2xl shadow-xl">
       <figure>
         <img src={thumbnail_url} alt="Shoes" />
       </figure>
