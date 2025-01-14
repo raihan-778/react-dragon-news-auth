@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
     // .then((res) => {
     //   setLoading(true);
@@ -31,6 +32,7 @@ const AuthProvider = ({ children }) => {
     // .catch((err) => console.log(err));
   };
   const signInUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
     // .then((res) => {
     //   setLoading(true);
@@ -40,6 +42,7 @@ const AuthProvider = ({ children }) => {
     // .catch((err) => console.log(err));
   };
   const registerWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
     // .then((res) => {
     //   setLoading(true);
@@ -49,6 +52,7 @@ const AuthProvider = ({ children }) => {
     // .catch((err) => console.log(err));
   };
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
     // .then(() => {
     //   setLogOutInfo("User logged out Successfully");
@@ -75,7 +79,7 @@ const AuthProvider = ({ children }) => {
     registerWithGoogle,
     logOut,
     loading,
-    setLoading,
+
     // logOutInfo,
     user,
   };

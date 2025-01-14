@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ aNews }) => {
   const {
@@ -17,11 +18,20 @@ const NewsCard = ({ aNews }) => {
   return (
     <div className="card bg-base-100 p-3 my-2 border-2 rounded-2xl shadow-xl">
       <figure>
-        <img src={thumbnail_url} alt="Shoes" />
+        <img src={image_url} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <p>{details}</p>
+        {details.length > 200 ? (
+          <p>
+            {details.slice(0, 200)}
+            <Link className="text-indigo-600" to={`news/${_id}`}>
+              See More...
+            </Link>
+          </p>
+        ) : (
+          <p>{details}</p>
+        )}
         <div className="card-actions justify-end">
           <button className="btn btn-primary">Buy Now</button>
         </div>

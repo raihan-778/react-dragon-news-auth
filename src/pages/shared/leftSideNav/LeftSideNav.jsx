@@ -1,13 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../provider/AuthProvider";
 
 const LeftSideNav = () => {
-  const { setLoading } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
     fetch("categories.json")
       .then((res) => res.json())
       .then((data) => {
